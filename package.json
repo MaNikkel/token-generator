@@ -1,5 +1,5 @@
 {
-  "name": "token-generator",
+  "name": "token-figma-generator",
   "version": "1.0.0",
   "description": "Figma tokens generator for design system",
   "main": "dist/index.js",
@@ -22,7 +22,6 @@
   "files": ["dist/**/*"],
   "dependencies": {
     "axios": "^0.21.1",
-    "dotenv": "^8.2.0",
     "json-diff": "^0.5.4",
     "rgb-hex": "^3.0.0"
   },

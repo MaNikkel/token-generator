@@ -26,7 +26,8 @@ export default class GenerateTokenService {
       // const latest = await this.generateTokenProvider.returnLatestTokens();
       // await this.uploadTokenFileProvider.upload(latest);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
+      throw new Error(e);
     }
   }
 }

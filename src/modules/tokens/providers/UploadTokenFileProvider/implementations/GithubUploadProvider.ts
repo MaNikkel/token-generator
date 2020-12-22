@@ -2,9 +2,9 @@
 import IUploadTokenFileProvider from '../models/IUploadTokenFileProvider';
 
 export default class GithubUploadProvider implements IUploadTokenFileProvider {
-  public async upload(tokens: any): Promise<void> {
+  public async upload(): Promise<void> {
     try {
-      console.log(tokens);
+      // console.log(tokens);
       // TODO: NOT WORKING
       // axios.post(
       //   'https://api.github.com/repo/MaNikkel/token-generator/dispatches',
@@ -23,7 +23,7 @@ export default class GithubUploadProvider implements IUploadTokenFileProvider {
       //   },
       // );
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       throw new Error(e.message);
     }
   }
