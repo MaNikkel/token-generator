@@ -23,8 +23,8 @@ export default class GenerateTokenService {
       const colors = await this.generateTokenProvider.getPallete(stylesPage);
       const parsedFile = await this.generateTokenProvider.parseFile(colors);
       await this.generateTokenProvider.manageVersion(parsedFile);
-      const latest = await this.generateTokenProvider.returnLatestTokens();
-      await this.uploadTokenFileProvider.upload(latest);
+      // const latest = await this.generateTokenProvider.returnLatestTokens();
+      // await this.uploadTokenFileProvider.upload(latest);
     } catch (e) {
       console.log(e);
     }
