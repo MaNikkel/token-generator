@@ -92,11 +92,13 @@ export default class DiskTokensProvider implements IGenerateTokenProvider {
     return figmaFile.data.document.children[1];
   }
 
-  public async returnLatestTokens(): Promise<any> {
-    const file = fs.readFileSync(
-      path.join(filePathConfig.filesDir, 'latest.json'),
-    );
-    const parsedFile = JSON.parse(file as any);
-    return parsedFile;
+  public async returnLatestTokens(): Promise<any | null> {
+    const latestPath = path.join(filePathConfig.filesDir, 'latest.json');
+    if (fs.existsSync(latestPath)) {
+      const file = fs.readFileSync(latestPath);
+      const parsedFile = JSON.parse(file as any);
+      return parsedFile;
+    }
+    return null;
   }
 }

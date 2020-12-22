@@ -3,6 +3,6 @@ export default interface IGenerateTokenProvider {
   parseFile(colors: any[]): Promise<any>;
   getFigmaFile(): Promise<any>;
   getStylePage(figmaFile: any): Promise<any>;
-  returnLatestTokens(): Promise<any>;
+  returnLatestTokens(): Promise<any | null>;
   manageVersion(file: any): Promise<void>;
 }
