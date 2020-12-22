@@ -91,4 +91,12 @@ export default class DiskTokensProvider implements IGenerateTokenProvider {
   public async getStylePage(figmaFile: any) {
     return figmaFile.data.document.children[1];
   }
+
+  public async returnLatestTokens(): Promise<any> {
+    const file = fs.readFileSync(
+      path.join(filePathConfig.filesDir, 'latest.json'),
+    );
+    const parsedFile = JSON.parse(file as any);
+    return parsedFile;
+  }
 }

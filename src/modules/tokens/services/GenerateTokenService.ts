@@ -1,10 +1,17 @@
 import IGenerateTokenProvider from '../providers/GenerateTokenProvider/models/IGenerateTokenProvider';
+import IUploadTokenFileProvider from '../providers/UploadTokenFileProvider/models/IUploadTokenFileProvider';
 
 export default class GenerateTokenService {
   private generateTokenProvider: IGenerateTokenProvider;
 
-  constructor(generateTokenProvider: IGenerateTokenProvider) {
+  private uploadTokenFileProvider: IUploadTokenFileProvider;
+
+  constructor(
+    generateTokenProvider: IGenerateTokenProvider,
+    uploadTokenFileProvider: IUploadTokenFileProvider,
+  ) {
     this.generateTokenProvider = generateTokenProvider;
+    this.uploadTokenFileProvider = uploadTokenFileProvider;
   }
 
   public async execute(): Promise<void> {
@@ -15,7 +22,9 @@ export default class GenerateTokenService {
       );
       const colors = await this.generateTokenProvider.getPallete(stylesPage);
       const parsedFile = await this.generateTokenProvider.parseFile(colors);
-      this.generateTokenProvider.manageVersion(parsedFile);
+      await this.generateTokenProvider.manageVersion(parsedFile);
+      const latest = await this.generateTokenProvider.returnLatestTokens();
+      await this.uploadTokenFileProvider.upload(latest);
     } catch (e) {
       console.log(e);
     }
