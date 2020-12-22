@@ -1,6 +1,6 @@
 {
   "name": "figma-token-generator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Figma tokens generator for design system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,9 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push "
   },
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "dependencies": {
     "axios": "^0.21.1",
     "json-diff": "^0.5.4",
