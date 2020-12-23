@@ -70,7 +70,11 @@ export default class DiskTokensProvider implements IGenerateTokenProvider {
   }
 
   public async getPallete(stylePage: any): Promise<any[]> {
-    const colors = stylePage.children[0].children.map((color: any) => {
+    const colorsFrame = stylePage.children.find(
+      (child: any) => child.name === 'colors',
+    );
+
+    const colors = colorsFrame.children.map((color: any) => {
       return {
         [color.name]: `#${rgbHex(
           color.fills[0].color.r * 255,
@@ -84,12 +88,15 @@ export default class DiskTokensProvider implements IGenerateTokenProvider {
 
   public async parseFile(colors: any[]): Promise<any> {
     return {
-      colors: colors.reduce((acc, cur) => ({ ...acc, ...cur })),
+      ...colors.reduce((acc, cur) => ({ ...acc, ...cur })),
     };
   }
 
   public async getStylePage(figmaFile: any) {
-    return figmaFile.data.document.children[1];
+    const stylePage = figmaFile.data.document.children.find(
+      (page: any) => page.name === 'styles',
+    );
+    return stylePage;
   }
 
   public async returnLatestTokens(): Promise<any | null> {
